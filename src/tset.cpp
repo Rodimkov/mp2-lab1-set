@@ -4,86 +4,112 @@
 //   Переработано для Microsoft Visual Studio 2008 Сысоевым А.В. (19.04.2015)
 //
 // Множество - реализация через битовые поля
-/*
+
 #include "tset.h"
 
-TSet::TSet(int mp) : BitField(-1)
+TSet::TSet(int mp) : BitField(mp)
 {
 }
 
 // конструктор копирования
-TSet::TSet(const TSet &s) : BitField(-1)
+TSet::TSet(const TSet &s) : BitField(s.MaxPower)
 {
 }
 
 // конструктор преобразования типа
-TSet::TSet(const TBitField &bf) : BitField(-1)
+TSet::TSet(const TBitField &bf) : BitField(BitField.GetLength()), MaxPower(BitField.GetLength())
 {
 }
 
 TSet::operator TBitField()
 {
+	return BitField;
 }
 
 int TSet::GetMaxPower(void) const // получить макс. к-во эл-тов
 {
+	return MaxPower;
 }
 
 int TSet::IsMember(const int Elem) const // элемент множества?
 {
-    return 0;
+    return BitField.GetBit(Elem);
 }
 
 void TSet::InsElem(const int Elem) // включение элемента множества
 {
+	BitField.SetBit(Elem);
 }
 
 void TSet::DelElem(const int Elem) // исключение элемента множества
 {
+	BitField.ClrBit(Elem);
 }
 
 // теоретико-множественные операции
 
 TSet& TSet::operator=(const TSet &s) // присваивание
 {
+	BitField = s.BitField;
+	MaxPower = s.MaxPower;
+	return *this;
 }
 
 int TSet::operator==(const TSet &s) const // сравнение
 {
+	if(	MaxPower == s.MaxPower) 
+		if (BitField == s.BitField)
+			return 1;
     return 0;
 }
 
 int TSet::operator!=(const TSet &s) const // сравнение
 {
+	return !( *this == s);
 }
 
 TSet TSet::operator+(const TSet &s) // объединение
 {
+	return BitField | s.BitField;
 }
 
 TSet TSet::operator+(const int Elem) // объединение с элементом
 {
+	BitField.SetBit(Elem);
+	return  *this;
 }
 
 TSet TSet::operator-(const int Elem) // разность с элементом
 {
+	BitField.ClrBit(Elem);
+	return  *this;
 }
 
 TSet TSet::operator*(const TSet &s) // пересечение
 {
+	return BitField & s.BitField;
 }
 
 TSet TSet::operator~(void) // дополнение
 {
+	return ~BitField;
 }
 
 // перегрузка ввода/вывода
 
 istream &operator>>(istream &istr, TSet &s) // ввод
 {
+	int k;
+	istr >> k;
+	while( k >= 0 )
+		s.BitField.GetBit(k);
+	return istr;
 }
 
 ostream& operator<<(ostream &ostr, const TSet &s) // вывод
 {
+	for (int i = 0; i<s.BitField.GetLength();i++)
+		if ( s.BitField.GetBit(i) !=0 )
+			ostr << i;
+	return ostr;
 }
-*/
