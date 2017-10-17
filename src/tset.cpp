@@ -7,17 +7,17 @@
 
 #include "tset.h"
 
-TSet::TSet(int mp) : BitField(mp)
+TSet::TSet(int mp) : BitField(mp), MaxPower(mp)
 {
 }
 
 // конструктор копирования
-TSet::TSet(const TSet &s) : BitField(s.MaxPower)
+TSet::TSet(const TSet &s) : MaxPower(s.MaxPower), BitField(s.BitField) // че будет если мах иниц по другому 
 {
 }
 
 // конструктор преобразования типа
-TSet::TSet(const TBitField &bf) : BitField(BitField.GetLength()), MaxPower(BitField.GetLength())
+TSet::TSet(const TBitField &bf) : BitField(bf), MaxPower(bf.GetLength())
 {
 }
 
@@ -57,9 +57,11 @@ TSet& TSet::operator=(const TSet &s) // присваивание
 
 int TSet::operator==(const TSet &s) const // сравнение
 {
-	if(	MaxPower == s.MaxPower) 
-		if (BitField == s.BitField)
+	if(	MaxPower == s.MaxPower) {
+		if (BitField == s.BitField){
 			return 1;
+		}
+	}
     return 0;
 }
 
@@ -111,5 +113,7 @@ ostream& operator<<(ostream &ostr, const TSet &s) // вывод
 	for (int i = 0; i<s.BitField.GetLength();i++)
 		if ( s.BitField.GetBit(i) !=0 )
 			ostr << i;
+
+	
 	return ostr;
 }

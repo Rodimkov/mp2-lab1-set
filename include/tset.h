@@ -4,7 +4,7 @@
 //   Переработано для Microsoft Visual Studio 2008 Сысоевым А.В. (19.04.2015)
 //
 // Множество
-/*
+
 #ifndef __SET_H__
 #define __SET_H__
 
@@ -41,4 +41,3 @@ public:
   friend ostream &operator<<(ostream &ostr, const TSet &bf);
 };
 #endif
-*/
