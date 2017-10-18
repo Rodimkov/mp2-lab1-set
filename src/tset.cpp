@@ -112,8 +112,6 @@ ostream& operator<<(ostream &ostr, const TSet &s) // вывод
 {
 	for (int i = 0; i<s.BitField.GetLength();i++)
 		if ( s.BitField.GetBit(i) !=0 )
-			ostr << i;
-
-	
+			ostr << i << ' ';
 	return ostr;
 }

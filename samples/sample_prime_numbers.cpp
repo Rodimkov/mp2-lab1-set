@@ -9,7 +9,7 @@
 #include <vector>
 
 
-// #define USE_SET // Использовать класс TSet,
+ #define USE_SET // Использовать класс TSet,
                 // закоментировать, чтобы использовать битовое поле
 
 #ifndef USE_SET // Использовать класс TBitField
@@ -18,7 +18,7 @@
 #include "tset.h"
 int main()
 {
- /* int n, m, k, count;
+  int n, m, k, count;
 
   setlocale(LC_ALL, "Russian");
   cout << "Тестирование программ поддержки битового поля" << endl;
@@ -48,29 +48,11 @@ int main()
       cout << setw(3) << m << " ";
       if (k++ % 10 == 0)
         cout << endl;
-    }*/
+    }
 
   const int size = 38;
 
- 
 
-  const int firstSze = 4, secondSize = 8;
-  TBitField firstBf(firstSze), negFirstBf(firstSze), secondBf(secondSize), testBf(secondSize);
-  // firstBf = 0001
-  firstBf.SetBit(0);
-  negFirstBf = ~firstBf;
-  // negFirstBf = 1110
-
-  // secondBf = 00011000
-  secondBf.SetBit(3);
-  secondBf.SetBit(4);
-
-  // testBf = 00001000
-  testBf.SetBit(3);
-  //if( (secondBf & negFirstBf) == testBf) 
-	  cout << (secondBf & negFirstBf) << " \n" << testBf ;
-  cout << endl;
- // cout << "В первых " << n << " числах " << count << " простых" << endl;
   system("pause");
 }
 #else
